@@ -28,6 +28,9 @@ public class UserDetails {
 	@Column(name="last_name")
 	private String last_name;
 	
+	@Column(name="course_id")
+	private long course_id;
+	
 	
 	@Column(name="username")
 	private String username;
@@ -39,6 +42,16 @@ public class UserDetails {
 
 	public String getUsername() {
 		return username;
+	}
+
+
+	public long getCourse_id() {
+		return course_id;
+	}
+
+
+	public void setCourse_id(long course_id) {
+		this.course_id = course_id;
 	}
 
 

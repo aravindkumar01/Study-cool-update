@@ -219,6 +219,27 @@ public Course getCourseById(long id) {
 	}
 	
 	
+	public Map<String,List<String>> subjectByCourseForTree(long id) {
+		try {
+			
+			Map<String,List<String>> map=new HashMap<String, List<String>>();	
+			Course c=repo.findById(id);
+			
+			int years=c.getYears();
+			for(int i=1;i<=years;i++) {
+				List<String> subject=subjectRepo.getAllSubjectTree(id,i);
+				map.put(AppConstants.year[i-1], subject);
+			}
+			return map;
+			
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	//delete subject by course
 	public String deleteSubjectAll(long course_id)
 	{

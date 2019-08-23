@@ -272,6 +272,25 @@ public class CourseController {
 			
 		}
 
+		@GetMapping("/subject/course/tree/{id}")
+		public @ResponseBody ResponseEntity<Map<String,List<String>>> subjectByCourseForTree(@PathVariable("id") long id)
+		{
+			try {
+				
+				Map<String,List<String>> subject =service.subjectByCourseForTree(id);
+		        if (subject.isEmpty()) {
+		            return new ResponseEntity(HttpStatus.NO_CONTENT);
+		            // You many decide to return HttpStatus.NOT_FOUND
+		        }
+		        return new ResponseEntity<Map<String,List<String>>>(subject, HttpStatus.OK);
+			} catch (Exception e) {
+				System.out.println(e);
+				// TODO: handle exception
+			}
+			return null;
+			
+		}
+
 	
 	
 	/********************* subject *************************************************/

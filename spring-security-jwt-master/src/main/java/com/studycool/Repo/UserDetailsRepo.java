@@ -19,5 +19,7 @@ public interface UserDetailsRepo extends JpaRepository<UserDetails, Long>{
      @Modifying(clearAutomatically = true)
      @Query("UPDATE UserDetails d SET d.active=0 WHERE d.username = :username")  
 	 void deleteByEmail(String username);
+	
+	UserDetails findByUsername(String username);
 
 }

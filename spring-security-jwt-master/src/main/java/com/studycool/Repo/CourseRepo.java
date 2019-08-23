@@ -33,6 +33,7 @@ public interface CourseRepo extends JpaRepository<Course,Long> {
 	void deleteCourseByUnivercity(long id);
 	
 	
+	Course findByName(String name);
 	Course findById(long id);
 
 }

@@ -81,6 +81,28 @@ public class UserCrudController {
 	  			// TODO: handle exception
 	  		}
 	  	}	
+	   
+	   
+	   @PreAuthorize("hasAnyRole('ADMIN','STUDENT')")
+		@GetMapping("/api/user/get/{username}")
+		public @ResponseBody ResponseEntity<UserDetails> getUser(@PathVariable("username") String username)
+		{
+			try {
+				UserDetails user =service.findByUsername(username);
+		        if (user==null) {
+		            return new ResponseEntity(HttpStatus.NO_CONTENT);
+		            // You many decide to return HttpStatus.NOT_FOUND
+		        }
+		        return new ResponseEntity<UserDetails>(user, HttpStatus.OK);
+				
+			} catch (Exception e) {
+				System.out.println(e);
+				// TODO: handle exception
+			}
+			return null;
+			
+		}
+		
 	  	
 
 }

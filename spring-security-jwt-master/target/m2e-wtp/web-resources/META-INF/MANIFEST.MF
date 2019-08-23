@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: Aravind Kumar
+Build-Jdk: 11.0.4
+Implementation-Title: StudyCool
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: com.devglan
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/StudyCool
+Created-By: Maven Integration for Eclipse
+

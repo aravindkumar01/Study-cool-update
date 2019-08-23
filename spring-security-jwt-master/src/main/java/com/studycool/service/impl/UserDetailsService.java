@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.studycool.Repo.CourseRepo;
 import com.studycool.Repo.UserDetailsRepo;
+import com.studycool.model.Course;
 import com.studycool.model.User;
 import com.studycool.model.UserDetails;
 import com.studycool.service.UserService;
@@ -20,10 +22,13 @@ public class UserDetailsService {
 	@Autowired
 	UserServiceImpl userService;
 	
+	@Autowired
+	CourseRepo course;
 	public String newUser(UserDetails user)
 	{
 		try {
-			
+			Course c=course.findByName(user.getCourse());
+			user.setCourse_id(c.getId());
 			if(user.getId()==0)
 			{
 				if(userService.findByEmail(user.getUsername())!=null)
@@ -72,6 +77,20 @@ public class UserDetailsService {
 			return e.toString();
 			// TODO: handle exception
 		}
+	}
+	
+public UserDetails findByUsername(String username)
+	
+	{
+		try {
+			
+			return repo.findByUsername(username);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		return null;
 	}
 
 
