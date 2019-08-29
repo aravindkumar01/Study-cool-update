@@ -1,13 +1,16 @@
 package com.studycool.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.studycool.Repo.CourseRepo;
 import com.studycool.Repo.UserDetailsRepo;
+import com.studycool.Repo.UsersRepo;
 import com.studycool.model.Course;
 import com.studycool.model.User;
 import com.studycool.model.UserDetails;
@@ -16,6 +19,10 @@ import com.studycool.service.UserService;
 
 @Service
 public class UserDetailsService {
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptEncoder;
+	
 	@Autowired
 	UserDetailsRepo repo;
 	
@@ -24,6 +31,9 @@ public class UserDetailsService {
 	
 	@Autowired
 	CourseRepo course;
+	
+	@Autowired
+	UsersRepo userRepo;
 	public String newUser(UserDetails user)
 	{
 		try {
@@ -120,4 +130,29 @@ public UserDetails findByUsername(String username)
 			// TODO: handle exception
 		}
 	}
+	
+	
+	
+	
+			public boolean changePassword(Map<String,String> value) {
+					
+					try {
+						
+						User u=userRepo.findByUsername(value.get("username"));
+						
+						if(bcryptEncoder.matches(value.get("oldpassword"), u.getPassword())) {
+							
+							u.setPassword(bcryptEncoder.encode(value.get("newpassword")));
+							userRepo.save(u);
+							return true;
+						}
+						
+						return false;
+						//bcryptEncoder.encode(rawPassword)
+					} catch (Exception e) {
+						e.printStackTrace();
+						// TODO: handle exception
+					}
+					return false;
+				}
 }

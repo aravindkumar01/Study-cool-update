@@ -31,6 +31,20 @@ public class Subject{
 	
 	@Column(name="semster")	
 	private String semster;
+	
+	
+	
+
+	@Column(name="page_number")	
+	private String page_number;
+
+	public String getPage_number() {
+		return page_number;
+	}
+
+	public void setPage_number(String page_number) {
+		this.page_number = page_number;
+	}
 
 	public Long getId() {
 		return id;

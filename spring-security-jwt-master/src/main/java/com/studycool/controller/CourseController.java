@@ -232,6 +232,25 @@ public class CourseController {
 		
 	}
 	
+	@GetMapping("/subject/{name}/{id}")
+	public @ResponseBody ResponseEntity<?> getSubjectByPagenumber(@PathVariable("id") long courseid,@PathVariable("name") String name)
+	{
+		try {
+			Subject subject=service.getSubjectByPagenumber(courseid,name);
+	        if (subject==null) {
+	            return new ResponseEntity(HttpStatus.NO_CONTENT);
+	            // You many decide to return HttpStatus.NOT_FOUND
+	        }
+	        return new ResponseEntity<Subject>(subject, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			// TODO: handle exception
+		}
+		return null;
+		
+	}
+	
 	//getall subject by course
 	@GetMapping("/subject/course/{id}")
 	public @ResponseBody ResponseEntity<List<Subject>> subjectByCourse(@PathVariable("id") long id)
@@ -377,12 +396,14 @@ public class CourseController {
 				try {
 					List<Sylabus> sylabus =service.getallSylabusBySubject(id);
 			        if (sylabus.isEmpty()) {
+			        	System.out.println("-------------------List empty---------");
 			            return new ResponseEntity(HttpStatus.NO_CONTENT);
 			            // You many decide to return HttpStatus.NOT_FOUND
 			        }
 			        return new ResponseEntity<List<Sylabus>>(sylabus, HttpStatus.OK);
 					
 				} catch (Exception e) {
+					e.printStackTrace();
 					System.out.println(e);
 					// TODO: handle exception
 				}

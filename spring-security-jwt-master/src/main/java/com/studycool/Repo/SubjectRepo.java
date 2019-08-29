@@ -44,5 +44,10 @@ public interface SubjectRepo extends JpaRepository<Subject, Long> {
     @Modifying
     @Query("select s.name from Subject s where s.course_id = :cid and s.year= :year")		
 	List<String> getAllSubjectTree(long cid,int year);
+	
+	
+	@Transactional   
+    @Query("select s from Subject s where s.course_id = :cid and s.name= :name")		
+	Subject pagenumber(long cid,String name);
 
 }

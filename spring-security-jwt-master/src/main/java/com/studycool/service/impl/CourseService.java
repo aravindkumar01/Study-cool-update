@@ -264,8 +264,22 @@ public Course getCourseById(long id) {
 		
 		return subjectRepo.findById(id);
 	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return null;
+	}
+	
+	
+	public Subject getSubjectByPagenumber(long courseId,String name) {
+		
+		try {
+			
+			return subjectRepo.pagenumber(courseId,name);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
-	}}
+		}
 	/* ******************************************************end subject ****************************************/
 	
 	
