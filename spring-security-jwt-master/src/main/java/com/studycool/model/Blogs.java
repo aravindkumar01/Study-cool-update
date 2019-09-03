@@ -1,5 +1,7 @@
 package com.studycool.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="blogs")
@@ -21,8 +25,23 @@ public class Blogs {
 	@Column(name="tittle")
     private String tittle;
 	
+
+	@Column(name="createDateTime")
+	//@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private Date createDateTime = new Date(System.currentTimeMillis());
 	
 	
+	
+	
+	public Date getCreateDateTime() {
+		return createDateTime;
+	}
+
+	public void setCreateDateTime(Date createDateTime) {
+		this.createDateTime = createDateTime;
+	}
+
 	@Column(name="tags")
     private String tags;
 	
@@ -36,6 +55,10 @@ public class Blogs {
 	
 	@Column(name="status")
     private int status=1;
+	
+	
+	
+	
 
 	public Long getId() {
 		return id;
