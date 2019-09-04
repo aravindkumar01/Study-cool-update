@@ -15,8 +15,22 @@ public class Role {
 
     @Column
     private String description;
+    
+    
+    @Column
+    private int status=1;
+    
+    
 
-    public long getId() {
+    public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public long getId() {
         return id;
     }
 

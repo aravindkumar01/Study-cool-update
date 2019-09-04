@@ -14,12 +14,11 @@ import com.studycool.model.Course;
 @Repository
 public interface CourseRepo extends JpaRepository<Course,Long> {
 
-	/*@Transactional
+	@Transactional
     @Modifying
-    @Query("select c from Course c where c.univercity_id = :id")
+    @Query("select c from Course c where c.u_id = :id")
 	List<Course> courseByUnivercity(long id);
 
-}*/
 	
 	@Transactional
     @Modifying

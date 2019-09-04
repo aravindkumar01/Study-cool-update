@@ -115,9 +115,9 @@ public class CourseService {
 	public List<Course> courseByUnivercity(long id) {
 		try {
 		
-				//return repo.courseByUnivercity(id);
-				return null;
 		
+			return repo.courseByUnivercity(id);
+			
 		} catch (Exception e) {
 			System.out.println(e);
 			// TODO: handle exception
@@ -145,10 +145,7 @@ public Course getCourseById(long id) {
 	public String addSubject(Subject subject) {
 		
 		try {
-			
-				
-		
-				subjectRepo.save(subject);
+			    subjectRepo.save(subject);
 				return "sucess";
 		} catch (Exception e) {
 			return e.toString();

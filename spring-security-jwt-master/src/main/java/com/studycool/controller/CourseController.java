@@ -123,10 +123,10 @@ public class CourseController {
 	        }
 	        return new ResponseEntity<List<Course>>(course, HttpStatus.OK);
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println(e);
-			// TODO: handle exception
+			return null;			
 		}
-		return null;
 		
 	}
 	

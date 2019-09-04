@@ -26,14 +26,25 @@ public class Blogs {
     private String tittle;
 	
 
+	@Column(name="likes")
+    private int likes=0;;
+	
+
 	@Column(name="createDateTime")
-	//@JsonFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date createDateTime = new Date(System.currentTimeMillis());
 	
 	
 	
-	
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
 	public Date getCreateDateTime() {
 		return createDateTime;
 	}

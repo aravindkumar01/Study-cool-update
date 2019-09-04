@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.studycool.service.impl.RoleService;
 
 @Controller
 @RequestMapping("/api")
+@CrossOrigin("http://localhost:4200")
 public class RoleController {
 	
 	@Autowired
@@ -42,7 +44,6 @@ public class RoleController {
 		
 	}
 	
-
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping("/role")
 	public @ResponseBody ResponseEntity<List<Role>> getall()
@@ -56,6 +57,7 @@ public class RoleController {
 	        return new ResponseEntity<List<Role>>(role, HttpStatus.OK);
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println(e);
 			// TODO: handle exception
 		}
@@ -64,6 +66,47 @@ public class RoleController {
 	}
 	
 	
+
+	@GetMapping("/role/regs")
+	public @ResponseBody ResponseEntity<List<Role>> getAllRegs()
+	{
+		try {
+			List<Role> role =service.getAllRoleReg();
+			if(role.isEmpty()) {
+	            return new ResponseEntity(HttpStatus.NO_CONTENT);
+	            // You many decide to return HttpStatus.NOT_FOUND
+	        }
+	        return new ResponseEntity<List<Role>>(role, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+			// TODO: handle exception
+		}
+		return null;
+		
+	}
+	
+	
+	@GetMapping("/role/{id}")
+	public @ResponseBody ResponseEntity<?> getRole(@PathVariable("id") long id)
+	{
+		try {
+			Role role =service.getRole(id);
+			if(role==null) {
+	            return new ResponseEntity<String>("failled to retrive",HttpStatus.NO_CONTENT);
+	            // You many decide to return HttpStatus.NOT_FOUND
+	        }
+	        return new ResponseEntity<Role>(role, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+			// TODO: handle exception
+		}
+		return null;
+		
+	}
 	
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")

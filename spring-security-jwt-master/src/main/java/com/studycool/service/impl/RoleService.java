@@ -59,6 +59,18 @@ public class RoleService {
 		}
 		return null;
 	}
+	
+	public List<Role> getAllRoleReg() {
+		
+		
+		try {
+			return repo.getRolesRegistration();
+		} catch (Exception e) {
+			
+			System.out.println(e);
+		}
+		return null;
+	}
 
 /*******************add user role****************/
 	@Autowired
@@ -98,5 +110,17 @@ public class RoleService {
 			// TODO: handle exception
 		}
 		
+	}
+
+
+	public Role getRole(long id) {
+		try {
+			
+			return repo.findById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+			// TODO: handle exception
+		}
 	}
 }

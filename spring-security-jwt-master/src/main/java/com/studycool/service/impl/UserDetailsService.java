@@ -9,12 +9,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.studycool.Repo.CourseRepo;
+import com.studycool.Repo.UnivercityRepo;
 import com.studycool.Repo.UserDetailsRepo;
 import com.studycool.Repo.UsersRepo;
 import com.studycool.model.Course;
+import com.studycool.model.Univercity;
 import com.studycool.model.User;
 import com.studycool.model.UserDetails;
-import com.studycool.service.UserService;
 
 
 @Service
@@ -34,11 +35,19 @@ public class UserDetailsService {
 	
 	@Autowired
 	UsersRepo userRepo;
+	
+	@Autowired
+	UnivercityRepo uniRepo;
 	public String newUser(UserDetails user)
 	{
 		try {
-			Course c=course.findByName(user.getCourse());
-			user.setCourse_id(c.getId());
+			
+			Course c=course.findById(user.getCourse_id());
+			user.setCourse(c.getName());
+			
+			Univercity uni=uniRepo.findById(user.getUnivercity_id());
+			user.setUnivercity(uni.getName());
+			
 			if(user.getId()==0)
 			{
 				if(userService.findByEmail(user.getUsername())!=null)

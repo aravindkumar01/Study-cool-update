@@ -81,6 +81,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 			
 			if(user.getId()==0)
 			{
+				
 				User newUser = new User();
 			    newUser.setUsername(user.getUsername());
 			    newUser.setPassword(bcryptEncoder.encode(user.getPassword()));

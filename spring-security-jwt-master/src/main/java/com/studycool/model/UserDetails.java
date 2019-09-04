@@ -34,11 +34,28 @@ public class UserDetails {
 	
 	@Column(name="username")
 	private String username;
+	
+
+	@Column(name="univercity_id")
+	private long univercity_id;
 
 	
 	
 	@Column(name="mobile")
 	private String mobile;
+
+	
+	
+	
+	public long getUnivercity_id() {
+		return univercity_id;
+	}
+
+
+	public void setUnivercity_id(long univercity_id) {
+		this.univercity_id = univercity_id;
+	}
+
 
 	public String getUsername() {
 		return username;
