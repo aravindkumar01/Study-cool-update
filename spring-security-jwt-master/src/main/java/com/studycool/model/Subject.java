@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Table(name="subject")
 public class Subject{
 	
+	
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Id
 	@Column(name="id")
@@ -36,13 +37,15 @@ public class Subject{
 	
 
 	@Column(name="page_number")	
-	private String page_number;
+	private int page_number;
 
-	public String getPage_number() {
+	
+
+	public int getPage_number() {
 		return page_number;
 	}
 
-	public void setPage_number(String page_number) {
+	public void setPage_number(int page_number) {
 		this.page_number = page_number;
 	}
 
