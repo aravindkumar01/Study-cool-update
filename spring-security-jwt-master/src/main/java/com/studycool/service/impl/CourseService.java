@@ -270,10 +270,10 @@ public class CourseService {
 	@Autowired
 	SylabusRepo sys;
 
-	public String addSylabus(Sylabus sylabus, MultipartFile uploadfile) {
+	public String addSylabus(Sylabus sylabus) {
 
 		try {
-			String filename = sylabus.getTopic().replace(" ", "") + "_" + sylabus.getSubject_id()
+		/*	String filename = sylabus.getTopic().replace(" ", "") + "_" + sylabus.getSubject_id()
 					+ AppConstants.FILE_EX;
 			if (!"".equalsIgnoreCase(uploadfile.getOriginalFilename())) {
 				// Handle file content - multipartFile.getInputStream()
@@ -282,6 +282,8 @@ public class CourseService {
 			}
 			sylabus.setFile_name(filename);
 			sylabus.setFile_path(filename);
+			sys.save(sylabus);*/
+			
 			sys.save(sylabus);
 			return "sucess";
 
@@ -307,7 +309,7 @@ public class CourseService {
 		// TODO Auto-generated method stub
 
 		try {
-			return sys.findAll();
+			return sys.getallSylabus();
 
 		} catch (Exception e) {
 			System.out.println(e);

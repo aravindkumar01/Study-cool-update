@@ -305,13 +305,14 @@ public class FileService {
 		       					String unit=d.getContent().replaceAll("\\.[^.]*$", "");
 		       					sylabus.setUnit_number((int) Integer.valueOf(unit));
 		       				} else if(i==3) {
-		       				    multipartFile =convertfile(d.getContent());
+		       				   // multipartFile =convertfile(d.getContent());
+		       					sylabus.setContent(d.getContent());
 		       				} 
 		       			}
 		       			i++;
 		       		}
 		 			sylabus.setSubject_id(id);
-		 			courseService.addSylabus(sylabus,multipartFile);
+		 			courseService.addSylabus(sylabus);
 		       	}
 				
 				return true;

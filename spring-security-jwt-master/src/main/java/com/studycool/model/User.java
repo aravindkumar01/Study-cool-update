@@ -14,8 +14,9 @@ public class User {
     private long id;
     @Column
     private String username;
+    
     @Column
-    @JsonIgnore
+   // @JsonIgnore
     private String password;
     @Column(name="active")
 	private int active=1;

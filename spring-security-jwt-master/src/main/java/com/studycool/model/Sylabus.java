@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -61,28 +62,24 @@ public class Sylabus {
 	}
 
 //content
-	@Column(name="file_name")
+	/*@Column(name="file_name")
 	private String file_name;
 	
 	@Column(name="file_path")
 	private String file_path;
+  */
+	
+	@Lob
+	@Column(name="content")
+	private String content;
 
-	public String getFile_path() {
-		return file_path;
+	public String getContent() {
+		return content;
 	}
 
-	public void setFile_path(String file_path) {
-		this.file_path = file_path;
+	public void setContent(String content) {
+		this.content = content;
 	}
-
-	public String getFile_name() {
-		return file_name;
-	}
-
-	public void setFile_name(String file_name) {
-		this.file_name = file_name;
-	}
-
 	
 	
 	

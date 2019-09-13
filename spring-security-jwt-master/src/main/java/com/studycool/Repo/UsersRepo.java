@@ -36,6 +36,6 @@ public interface UsersRepo extends JpaRepository<User, Long> {
 	     @Query("UPDATE User d SET d.active=0 WHERE d.username= :email")  
 		 void deleteByEmail(String email);
 
-
+	 	User findById(long id);
 
 }

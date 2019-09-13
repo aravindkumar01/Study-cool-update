@@ -320,13 +320,13 @@ public class CourseController {
 
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping("/sylabus")
-	public @ResponseBody String addSyslabus(@RequestPart("file") MultipartFile uploadfile,HttpServletRequest request)
+	public @ResponseBody String addSyslabus(@RequestBody Sylabus sylabus)
 	{
 		try {
-			System.out.println(uploadfile.getOriginalFilename());
+			/*System.out.println(uploadfile.getOriginalFilename());
 			String a=request.getParameter("name");			
-			Sylabus sylabus=new ObjectMapper().readValue(a, Sylabus.class);
-			return service.addSylabus(sylabus,uploadfile);
+			Sylabus sylabus=new ObjectMapper().readValue(a, Sylabus.class);*/
+			return service.addSylabus(sylabus);
 		} catch (Exception e) {
 			return e.toString();
 			// TODO: handle exception

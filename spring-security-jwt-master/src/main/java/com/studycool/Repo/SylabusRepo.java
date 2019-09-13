@@ -16,7 +16,7 @@ public interface SylabusRepo extends JpaRepository<Sylabus, Long>{
 
 	@Transactional
     @Modifying
-    @Query("select s from Sylabus s where s.subject_id = :id")	
+    @Query("select s.id,s.topic,s.unit_number,s.subject_id from Sylabus s where s.subject_id = :id")	
 	List<Sylabus> getallSylabusBySubject(long id);
 	
 	@Transactional
@@ -27,6 +27,9 @@ public interface SylabusRepo extends JpaRepository<Sylabus, Long>{
 
 	@Transactional
     @Modifying
+    @Query("select s.id,s.topic,s.unit_number,s.subject_id from Sylabus s ")	
+	List<Sylabus> getallSylabus();
+	
     @Query("delete  from Sylabus s where s.subject_id = :id")		
 	void deleteSylabusBySubject(Long id);
 	
