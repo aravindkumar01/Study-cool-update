@@ -178,8 +178,8 @@ public class UserCrudController {
 	}
 
 
-	@PreAuthorize("hasAnyRole('ADMIN')")
-	@PostMapping("/api/forgetpassword")
+	
+	@GetMapping("/api/forgetpassword/{username}")
 	public @ResponseBody ResponseEntity<?> forgetPass(@PathVariable("username") String username) {
 		try {
 			boolean result = service.forgetPassword(username);

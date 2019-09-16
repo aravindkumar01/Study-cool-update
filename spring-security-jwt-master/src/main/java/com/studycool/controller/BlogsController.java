@@ -146,7 +146,27 @@ public class BlogsController {
 		
 	}
 	
-	
+	@GetMapping("/blogs/dash/{username}")
+	@PreAuthorize("hasAnyRole('ADMIN','STAFF','STUDENT')")
+	public @ResponseBody ResponseEntity<?> getAllByUsername(@PathVariable("username") String username)
+	{
+		try {
+			List<Blogs> blogs =service.getByUsername(username);
+	        if (blogs==null) {
+	            return new ResponseEntity<String>("unable to get!", HttpStatus.OK);
+	            // You many decide to return HttpStatus.NOT_FOUND
+	        }
+	        return new ResponseEntity<List<Blogs>>(blogs, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+			// TODO: handle exception
+			return null;
+		}
+		
+		
+	}
 	
 
 }

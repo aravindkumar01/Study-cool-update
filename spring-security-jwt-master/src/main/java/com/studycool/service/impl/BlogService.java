@@ -75,4 +75,17 @@ public class BlogService {
 			// TODO: handle exception
 		}
 	}
+	
+	
+public List<Blogs> getByUsername(String username){
+		
+		try {
+			
+			return repo.getByUsername(username);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+			// TODO: handle exception
+		}
+	}
 }

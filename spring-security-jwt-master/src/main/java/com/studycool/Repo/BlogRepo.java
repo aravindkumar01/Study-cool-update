@@ -22,6 +22,10 @@ public interface BlogRepo extends JpaRepository<Blogs, Long>{
 	List<Blogs> getBolgsForDash();
 	
 
+    @Query("select id,tittle,tags,createDateTime from Blogs where username=:username")	
+	List<Blogs> getByUsername(String username);
+	
+
 	
     @Modifying
     @Query("update Blogs b set b.status=0 where b.id= :id")	
