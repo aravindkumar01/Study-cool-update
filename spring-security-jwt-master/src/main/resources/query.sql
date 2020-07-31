@@ -10,8 +10,12 @@ INSERT INTO user (id, username, password, salary, age) VALUES (1, 'user1', '$2a$
 INSERT INTO user (id, username, password, salary, age) VALUES (2, 'user2', '$2a$04$StghL1FYVyZLdi8/DIkAF./2rz61uiYPI3.MaAph5hUq03XKeflyW', 7823, 23);
 INSERT INTO user (id, username, password, salary, age) VALUES (3, 'user3', '$2a$04$Lk4zqXHrHd82w5/tiMy8ru9RpAXhvFfmHOuqTmFPWQcUhBD8SSJ6W', 4234, 45);
 
-INSERT INTO role (id, description, name) VALUES (4, 'Admin role', 'ADMIN');
-INSERT INTO role (id, description, name) VALUES (5, 'User role', 'USER');
+INSERT INTO role (id, description, name,status) VALUES (4, 'Admin role', 'ADMIN',1);
+INSERT INTO role (id, description, name,status) VALUES (5, 'User role', 'USER',1);  
 
 INSERT INTO user_roles (user_id, role_id) VALUES (1, 4);
 INSERT INTO user_roles (user_id, role_id) VALUES (2, 5);
+
+
+insert into univercity (univercity_id ,address ,location,name)  values (1, 'add', 'annur', 'BARATHIYAR');
+insert into course (course_id,name,u_id,years,univercity_id) values(1,'MCA',1,3,1);

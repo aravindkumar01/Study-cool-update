@@ -17,12 +17,12 @@ import com.studycool.model.Univercity;
 import com.studycool.model.User;
 import com.studycool.model.UserDetails;
 import com.studycool.service.EmailServiceImp;
-
+import java.io.*; 
 @Service
 public class UserDetailsService {
 
 	@Autowired
-	private BCryptPasswordEncoder bcryptEncoder;
+	private BCryptPasswordEncoder bcryptEncoder;   
 
 	@Autowired
 	UserDetailsRepo repo;
@@ -31,7 +31,7 @@ public class UserDetailsService {
 	UserServiceImpl userService;
 
 	@Autowired
-	CourseRepo course;
+	CourseRepo course;  
 
 	@Autowired
 	UsersRepo userRepo;
@@ -66,10 +66,11 @@ public class UserDetailsService {
 			repo.save(user); // insert to user details table
 			String pass = String.valueOf(user.getMobile()).substring(6);
 			u.setUsername(user.getUsername());
-			u.setPassword(user.getLast_name() + pass);
+			u.setPassword(user.getLast_name() + pass);  
 			String msg = "Your userpassword:" + user.getLast_name() + pass;
+			System.out.println("Your userpassword:"+msg);  
 			EmailServiceImp.sendSimpleMessage(user.getUsername(), "Welcome to StudyCool!", msg);
-			userService.save(u, user.getRole());
+			userService.save(u, user.getRole());  
 
 			// end
 			return "Sucess";
